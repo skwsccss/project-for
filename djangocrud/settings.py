@@ -27,7 +27,7 @@ DEBUG = True
 #
 # ALLOWED_HOSTS = ['*']
 #
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 #
 CORS_ALLOW_METHODS = (
     'DELETE',
@@ -50,6 +50,22 @@ CORS_ALLOW_HEADERS = (
     'x-requested-with',
     'Access-Control-Allow-Origin',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+import datetime
+
+SECRET_KEY = 'salesunificado'
+
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
     'http://localhost:8000',
